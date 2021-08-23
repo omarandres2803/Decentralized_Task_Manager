@@ -26,15 +26,15 @@ contract TasksContract {
     }
 
     constructor() {
-        createTask("Task #1", "Description #1");
+        // createTask("Task #1", "Description #1");
     }
 
     mapping (uint => Task ) public tasks ;
 
     function createTask(string memory _title, string memory _description) public {
+        taskCounter++;
         tasks[taskCounter] = Task(taskCounter, _title, _description, false, block.timestamp);
         emit TaskCreated(taskCounter, _title, _description, false);
-        taskCounter++;
     }
 
     function toggleDone(uint _id) public {
